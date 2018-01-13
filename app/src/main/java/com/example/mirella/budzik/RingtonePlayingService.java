@@ -37,6 +37,7 @@ public class RingtonePlayingService extends Service {
 
         String state = intent.getExtras().getString("extra");
         Integer songID = intent.getExtras().getInt("ID");
+        Integer yourSongID = intent.getExtras().getInt("Song");
 
         Log.e("Alarm jest",state);
         Log.e("Wybrana muzyka to", songID.toString());
@@ -75,80 +76,63 @@ public class RingtonePlayingService extends Service {
 
             if (songID==0)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm1);
+                mP = MediaPlayer.create(this,songID);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
             }
             else if (songID==1)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm2);
+                mP = MediaPlayer.create(this ,songID);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
             }
             else if (songID==2)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm2);
+                mP = MediaPlayer.create(this ,R.raw.alarm3);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
 
             } else if (songID==3)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm3);
+                mP = MediaPlayer.create(this ,R.raw.alarm4);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
 
             } else if (songID==4)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm4);
+                mP = MediaPlayer.create(this ,R.raw.alarm5);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
 
             } else if (songID==5)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm5);
+                mP = MediaPlayer.create(this ,R.raw.alarm6);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
 
             } else if (songID==6)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm6);
+                mP = MediaPlayer.create(this ,R.raw.alarm7);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
 
             } else if (songID==7)
             {
-                mP = MediaPlayer.create(this ,R.raw.alarm7);
-                mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
-            } else if (songID==8)
-            {
                 mP = MediaPlayer.create(this ,R.raw.alarm8);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
-            }
-            else if (songID==9)
+            } else if (songID==8)
             {
                 mP = MediaPlayer.create(this ,R.raw.alarm9);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
             }
-            else if(songID==10)
+            else if (songID==9)
             {
                 mP = MediaPlayer.create(this ,R.raw.alarm10);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
-
             }
             else if (songID==null)
             {
                 mP = MediaPlayer.create(this ,R.raw.alarm1);
                 mP.start();
                 Log.e("jestem w ifie",songID.toString());
+            }
+            else if (yourSongID!=null)
+            {
+                mP=MediaPlayer.create(this,yourSongID);
+                mP.start();
             }
 
         }

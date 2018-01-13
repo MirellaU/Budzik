@@ -17,14 +17,13 @@ import android.widget.Toast;
 public class MusicChooser extends AppCompatActivity {
 
     Button yourMusic;
-    Context context;
     ListView MusicList;
     int chooseSong;
     MediaPlayer mP;
 
     private final String[] listContent = {"chimes", "chord", "ding", "notify",
             "recycle", "ringin", "ringout", "tada", "ringring", "alarm"};
-    private final int[] resID = {R.raw.alarm1, R.raw.alarm2, R.raw.alarm3,
+    private long[] resID = {R.raw.alarm1, R.raw.alarm2, R.raw.alarm3,
             R.raw.alarm4, R.raw.alarm5, R.raw.alarm6, R.raw.alarm7, R.raw.alarm8, R.raw.alarm9, R.raw.alarm10};
 
 
@@ -45,23 +44,9 @@ public class MusicChooser extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 PlayTheSong(id);
                 chooseSong = (int) id;
-                
             }
         });
     }
-
-//    public boolean GoBack(MenuItem item)
-//    {
-//        // If the back button in the ActionBar is selected, call the Activity's onBackPressed().
-//        int id = item.getItemId();
-//        if(android.R.id.home == item.getItemId())
-//        {
-//            Activity activity =
-//            activity.onBackPressed();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public void NewActivity(View view) {
         Intent newIntent = new Intent(this, YourList.class);
@@ -69,6 +54,7 @@ public class MusicChooser extends AppCompatActivity {
     }
 
     public void SetTheSong(View view) {
+        mP.stop();
         Intent sendID = new Intent(MusicChooser.this, MainActivity.class);
         sendID.putExtra("chosenSong", chooseSong);
         startActivity(sendID);
@@ -79,75 +65,53 @@ public class MusicChooser extends AppCompatActivity {
     public void PlayTheSong(long id){
         if (id==0)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm1);
+            mP = MediaPlayer.create(this,R.raw.alarm1);
             mP.start();
         }
         else if (id==1)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm2);
+            mP = MediaPlayer.create(this ,R.raw.alarm2);
             mP.start();
-
         }
         else if (id==2)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm2);
+            mP = MediaPlayer.create(this ,R.raw.alarm3);
             mP.start();
 
         } else if (id==3)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm3);
+            mP = MediaPlayer.create(this ,R.raw.alarm4);
             mP.start();
 
         } else if (id==4)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm4);
+            mP = MediaPlayer.create(this ,R.raw.alarm5);
             mP.start();
 
         } else if (id==5)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm5);
+            mP = MediaPlayer.create(this ,R.raw.alarm6);
             mP.start();
 
         } else if (id==6)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm6);
+            mP = MediaPlayer.create(this ,R.raw.alarm7);
             mP.start();
 
         } else if (id==7)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm7);
+            mP = MediaPlayer.create(this ,R.raw.alarm8);
             mP.start();
         } else if (id==8)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm8);
+            mP = MediaPlayer.create(this ,R.raw.alarm9);
             mP.start();
         }
         else if (id==9)
         {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm9);
+            mP = MediaPlayer.create(this ,R.raw.alarm10);
             mP.start();
        }
-        else
-        {
-            MediaPlayer mP = MediaPlayer.create(this ,R.raw.alarm10);
-            mP.start();
-        }
-    }
-    public void BackButton(View view){
-        onPause();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mP != null) {
-            mP.pause();
-            if (isFinishing()) {
-                mP.stop();
-                mP.release();
-            }
-        }
     }
-
-
 }
