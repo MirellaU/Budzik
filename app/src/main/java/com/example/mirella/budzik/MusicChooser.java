@@ -33,7 +33,6 @@ public class MusicChooser extends AppCompatActivity {
         setContentView(R.layout.activity_music_chooser);
 
 
-        yourMusic = (Button) findViewById(R.id.yourMusic);
         MusicList = (ListView) findViewById(R.id.MusicList);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listContent);
@@ -46,11 +45,6 @@ public class MusicChooser extends AppCompatActivity {
                 chooseSong = (int) id;
             }
         });
-    }
-
-    public void NewActivity(View view) {
-        Intent newIntent = new Intent(this, YourList.class);
-        startActivity(newIntent);
     }
 
     public void SetTheSong(View view) {

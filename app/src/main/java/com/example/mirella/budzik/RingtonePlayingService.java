@@ -37,7 +37,6 @@ public class RingtonePlayingService extends Service {
 
         String state = intent.getExtras().getString("extra");
         Integer songID = intent.getExtras().getInt("ID");
-        Integer yourSongID = intent.getExtras().getInt("Song");
 
         Log.e("Alarm jest",state);
         Log.e("Wybrana muzyka to", songID.toString());
@@ -129,14 +128,6 @@ public class RingtonePlayingService extends Service {
                 mP.start();
                 Log.e("jestem w ifie",songID.toString());
             }
-            else if (yourSongID!=null)
-            {
-                Log.e("jestem w ifie",yourSongID.toString());
-                mP=MediaPlayer.create(this,yourSongID);
-                Log.e("chce odtworzyc",yourSongID.toString());
-                mP.start();
-            }
-
         }
         else if(this.isRunning && startId==0)
         {
@@ -158,6 +149,7 @@ public class RingtonePlayingService extends Service {
     }
 
     public void onDestroy(){
+
         Toast.makeText(this,"Błąd!",Toast.LENGTH_SHORT).show();
     }
 

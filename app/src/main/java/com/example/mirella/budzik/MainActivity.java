@@ -71,12 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent mIntent = getIntent();
                 int ID = mIntent.getIntExtra("chosenSong", 0);
 
-                Intent sIntent = getIntent();
-                int Song = sIntent.getIntExtra("Song", 0);
-
                 AlarmReceiverIntent.putExtra("extra", "on");
                 AlarmReceiverIntent.putExtra("ID", ID);
-                AlarmReceiverIntent.putExtra("Song", Song);
 
                 pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, AlarmReceiverIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(alarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
