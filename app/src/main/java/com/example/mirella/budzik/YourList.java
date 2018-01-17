@@ -9,6 +9,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,7 +23,7 @@ import java.util.ArrayList;
 public class YourList extends AppCompatActivity {
 
     private ArrayList<Song> songList;
-    private ListView songView;
+    private RecyclerView songView;
     Button mysong;
     int Song;
 
@@ -36,30 +39,36 @@ public class YourList extends AppCompatActivity {
             }}
 
         mysong = (Button)findViewById(R.id.mysong);
-        songView = (ListView)findViewById(R.id.song_list);
+        songView = (RecyclerView) findViewById(R.id.song_list);
         songList = new ArrayList<Song>();
+
         getSongList();
 
-        SongAdapter songAdt = new SongAdapter(this, songList);
-        songView.setAdapter(songAdt);
-        songAdt.getCount();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        songView.setLayoutManager(layoutManager);
 
-        songView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Song = (int) id;
-            }
-        });
+        final SongAdapter songAdapter = new SongAdapter(songList);
+        songView.setAdapter(songAdapter);
 
-        mysong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendSong = new Intent(YourList.this, MainActivity.class);
-                sendSong.putExtra("Song", Song);
-                startActivity(sendSong);
-            }
-        });
+
+//        mysong.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent sendSong = new Intent(YourList.this, MainActivity.class);
+//                sendSong.putExtra("Song", Song);
+//                startActivity(sendSong);
+//            }
+//        });
     }
+
+//    public void Song(View view)
+//    {
+//        Toast.makeText(getApplicationContext(), "Wybrałes swoja piosenke", Toast.LENGTH_SHORT).show();
+//        Log.e("jestem w song","1");
+//        Intent sendSong = new Intent(YourList.this, MainActivity.class);
+//        sendSong.putExtra("Song", Song);
+//        startActivity(sendSong);
+//    }
 
     public void getSongList() {
         ContentResolver musicResolver = getContentResolver();

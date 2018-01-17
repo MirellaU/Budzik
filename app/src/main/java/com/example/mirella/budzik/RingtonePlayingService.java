@@ -76,12 +76,12 @@ public class RingtonePlayingService extends Service {
 
             if (songID==0)
             {
-                mP = MediaPlayer.create(this,songID);
+                mP = MediaPlayer.create(this,R.raw.alarm1);
                 mP.start();
             }
             else if (songID==1)
             {
-                mP = MediaPlayer.create(this ,songID);
+                mP = MediaPlayer.create(this ,R.raw.alarm2);
                 mP.start();
             }
             else if (songID==2)
@@ -131,7 +131,9 @@ public class RingtonePlayingService extends Service {
             }
             else if (yourSongID!=null)
             {
+                Log.e("jestem w ifie",yourSongID.toString());
                 mP=MediaPlayer.create(this,yourSongID);
+                Log.e("chce odtworzyc",yourSongID.toString());
                 mP.start();
             }
 

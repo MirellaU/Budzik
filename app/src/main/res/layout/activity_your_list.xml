@@ -6,12 +6,12 @@
     android:orientation="vertical"
     tools:context="com.example.mirella.budzik.YourList">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/song_list"
         android:layout_width="fill_parent"
         android:layout_height="450dp"
-        android:listSelector="#A9B2C3">
-    </ListView>
+        android:listSelector="#A9B2C3" />
+
 
     <Button
         android:id="@+id/mysong"

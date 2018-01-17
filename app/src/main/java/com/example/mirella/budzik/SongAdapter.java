@@ -1,9 +1,11 @@
 package com.example.mirella.budzik;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -15,39 +17,71 @@ import java.util.ArrayList;
  * Created by Mirella on 02.01.2018.
  */
 
-public class SongAdapter extends BaseAdapter{
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
-    private ArrayList<Song> songs;
-    private LayoutInflater songInf;
+    private ArrayList<Song> songs = new ArrayList<>();
+    private OnItemClickListener listener;
 
-    public SongAdapter(Context c, ArrayList<Song> theSongs){
-        songs=theSongs;
-        songInf=LayoutInflater.from(c);
+    SongAdapter(ArrayList<Song> songs) {
+        this.songs = songs;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
-        LinearLayout songLay = (LinearLayout)songInf.inflate (R.layout.song,parent,false);
-        TextView songView = (TextView)songLay.findViewById(R.id.song_title);
-        TextView artistView = (TextView)songLay.findViewById(R.id.song_artist);
-        Song currSong = songs.get(position);
-        songView.setText(currSong.getTitle());
-        artistView.setText(currSong.getArtist());
-        songLay.setTag(position);
-        return songLay;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemLayoutView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.song, null);
+        return new ViewHolder(itemLayoutView);
     }
+
     @Override
-    public int getCount() {
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.setSongArtist(songs.get(position).getArtist());
+        holder.setSongTitle(songs.get(position).getTitle());
+        holder.getItemId();
+    }
+
+    @Override
+    public int getItemCount() {
         return songs.size();
     }
 
-    @Override
-    public Object getItem(int arg0) {
-        return null;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    @Override
-    public long getItemId(int id) {
-        return 0;
+        TextView songTitle;
+        TextView songArtist;
+
+        public ViewHolder(final View itemView) {
+            super(itemView);
+            songTitle = (TextView) itemView.findViewById(R.id.song_title);
+            songTitle = (TextView) itemView.findViewById(R.id.song_artist);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick(itemView, position);
+                }
+            });
+        }
+
+        private void setSongTitle(String name) {
+            songTitle.setText(name);
+        }
+        private void setSongArtist(String name) {
+            songArtist.setText(name);
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+        }
     }
 }

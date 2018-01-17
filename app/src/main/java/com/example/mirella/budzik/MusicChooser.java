@@ -65,50 +65,110 @@ public class MusicChooser extends AppCompatActivity {
     public void PlayTheSong(long id){
         if (id==0)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+            mP.release();
+            mP= null;
+            }
             mP = MediaPlayer.create(this,R.raw.alarm1);
             mP.start();
         }
         else if (id==1)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm2);
             mP.start();
         }
         else if (id==2)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm3);
             mP.start();
 
         } else if (id==3)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm4);
             mP.start();
 
         } else if (id==4)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm5);
             mP.start();
 
         } else if (id==5)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm6);
             mP.start();
 
         } else if (id==6)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm7);
             mP.start();
 
         } else if (id==7)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm8);
             mP.start();
         } else if (id==8)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm9);
             mP.start();
         }
         else if (id==9)
         {
+            if (mP!=null && mP.isPlaying())
+            {
+                mP.stop();
+                mP.release();
+                mP= null;
+            }
             mP = MediaPlayer.create(this ,R.raw.alarm10);
             mP.start();
        }
