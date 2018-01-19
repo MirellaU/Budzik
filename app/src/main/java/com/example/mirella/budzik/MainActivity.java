@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.context = this;
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarm = (Button) findViewById(R.id.alarm);
@@ -50,16 +53,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-
-
                 calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
                 calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
 
                 int hour = timePicker.getCurrentHour();
                 int minute = timePicker.getCurrentMinute();
-                Log.e("Jestem w onclick", "Yay");
 
                 String hour_string = String.valueOf(hour);
                 String minute_string = String.valueOf(minute);
@@ -140,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
         Socket s = null;
         try
         {
-            // polacz z wtyczka
-            s = new Socket("127.0.0.1", 9999);
+            s = new Socket("192.168.1.103", 9999);
         }
         catch (IOException e)
         {
@@ -150,9 +147,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-        // przygotuj do wyslania
         dos.write(wlacz);
-        // upewnij sie, ze zostanie wyslane
         dos.flush();
         s.close();
     }

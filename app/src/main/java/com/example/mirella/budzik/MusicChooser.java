@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 public class MusicChooser extends AppCompatActivity {
 
-    Button yourMusic;
     ListView MusicList;
     int chooseSong;
     MediaPlayer mP;

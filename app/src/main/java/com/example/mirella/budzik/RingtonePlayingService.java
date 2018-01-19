@@ -70,7 +70,6 @@ public class RingtonePlayingService extends Service {
                     .setAutoCancel(true)
                     .build();
             notificationManager.notify(0, NotificationPopUp);
-            Log.e("Notyfikacja działa ok","ok");
 
 
             if (songID==0)
@@ -126,7 +125,6 @@ public class RingtonePlayingService extends Service {
             {
                 mP = MediaPlayer.create(this ,R.raw.alarm1);
                 mP.start();
-                Log.e("jestem w ifie",songID.toString());
             }
         }
         else if(this.isRunning && startId==0)
